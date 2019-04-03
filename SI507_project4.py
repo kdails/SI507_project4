@@ -61,3 +61,8 @@ for state in states:
     soup = BeautifulSoup(url_data,'html.parser')
     parks_table = soup.find('ul', id='list_parks')
     parks_tagged = parks_table.find_all('li',class_='clearfix')
+for tag in parks_tagged:
+    # check if the park currently exists in the db
+    park_is_true = session.query(Park).filter(Park.Name == tag.h3.text).all()
+    # if park exists, create a new rel; if not we must add it to the db
+    # this code is like in discussion section- need break here to continue
