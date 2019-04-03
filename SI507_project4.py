@@ -43,3 +43,8 @@ for item in stated_tags:
     url = item.a['href']
     chopped_url = url.split('/')
     state_exists = session.query(State.Abbr).filter(State.Abbr.like(chopped_url[2])).all()
+# if the state doesn't already exist, add it to the db
+if not state_exists:
+    this_state = State(State=item.text,Abbr=chopped_url[2].upper(),URL='{}{}'.format(BASEURL,url))
+    session.add(this_state)
+session.commit()
