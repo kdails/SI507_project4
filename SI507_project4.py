@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests, json, csv
 from db_setup import *
 
-# setting up the caching ---- jackies code was too hard, made simpler with less stuff from 506
+# setting up the caching ---- jackies code was hard, made simpler with less stuff from 506
 def open_cache(CACHEFILE):
     try:
         with open(CACHEFILE,'r') as cache_file:
