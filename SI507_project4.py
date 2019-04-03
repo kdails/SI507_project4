@@ -1,4 +1,3 @@
-#setting up file structure here
 from bs4 import BeautifulSoup
 import requests, json, csv
 from setup import *
@@ -43,10 +42,10 @@ for item in stated_tags:
     url = item.a['href']
     chopped_url = url.split('/')
     state_exists = session.query(State.Abbr).filter(State.Abbr.like(chopped_url[2])).all()
-# if the state doesn't already exist, add it to the db
-if not state_exists:
-    this_state = State(State=item.text,Abbr=chopped_url[2].upper(),URL='{}{}'.format(BASEURL,url))
-    session.add(this_state)
+    # if the state doesn't already exist, add it to the db
+    if not state_exists:
+        this_state = State(State=item.text,Abbr=chopped_url[2].upper(),URL='{}{}'.format(BASEURL,url))
+        session.add(this_state)
 session.commit()
 
 # for each state retrieved from the States table, get the text from the url as stored in the db, cache it, and create a BeautifulSoup object
@@ -61,26 +60,26 @@ for state in states:
     soup = BeautifulSoup(url_data,'html.parser')
     parks_table = soup.find('ul', id='list_parks')
     parks_tagged = parks_table.find_all('li',class_='clearfix')
-for tag in parks_tagged:
-    # check if the park currently exists in the db
-    park_is_true = session.query(Park).filter(Park.Name == tag.h3.text).all()
-    # if park exists, create a new rel; if not we must add it to the db
-    # this code is like in discussion section- need break here to continue
-    if park_is_true:
-        rel_exists = session.query(StateParkAssociation).filter(StateParkAssociation.Park_Id == park_is_true[0].Id, StateParkAssociation.State_Id == id).all()
-        if rel_exists:
-            break
+    for tag in parks_tagged:
+        # check if the park currently exists in the db
+        park_is_true = session.query(Park).filter(Park.Name == tag.h3.text).all()
+        # if park exists, create a new rel; if not we must add it to the db
+        # this code is like in discussion section- need break here to continue
+        if park_is_true:
+            rel_exists = session.query(StateParkAssociation).filter(StateParkAssociation.Park_Id == park_is_true[0].Id, StateParkAssociation.State_Id == id).all()
+            if rel_exists:
+                break
+            else:
+                new_rel = StateParkAssociation(State_Id=id,Park_Id=park_is_true[0].Id)
+                session.add(new_rel)
+                session.commit()
         else:
-            new_rel = StateParkAssociation(State_Id=id,Park_Id=park_is_true[0].Id)
-            session.add(new_rel)
+            new_park = Park(Name=tag.h3.text,Type=tag.h2.text,Descr=tag.p.text.strip('\n'),Location=tag.h4.text)
+            session.add(new_park)
             session.commit()
-    else:
-        new_park = Park(Name=tag.h3.text,Type=tag.h2.text,Descr=tag.p.text.strip('\n'),Location=tag.h4.text)
-        session.add(new_park)
-        session.commit()
-        new_rel = StateParkAssociation(State_Id=id,Park_Id=new_park.Id)
-        session.add(new_rel)
-session.commit()
+            new_rel = StateParkAssociation(State_Id=id,Park_Id=new_park.Id)
+            session.add(new_rel)
+    session.commit()
 
 # write the data to a csv file.... make db
 with open('nps_parks.csv','w') as parks_file:
