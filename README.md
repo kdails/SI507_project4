@@ -18,6 +18,14 @@
 
 - this file also creates a csv file after creating a database with the returned data.
 
+<h3> How is the database & it's tables organized in db_setup.py? </h3>
+
+- Parks table with attributes of: Id, Name of the park, description of the park from nps.gov as well as Location and Type of park.
+
+- States table with attributes of: State Abbreviation (AL, MA, MI), State full name as well as the URL. 
+
+- Association Table using the ID's of Parks and States to align a many to many relationship.
+
 
 
 <h3>In order for this code to run, you must clone my repository to your local machine. Start off and place it right onto your mac desktop.</h3>
