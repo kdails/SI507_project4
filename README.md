@@ -2,8 +2,8 @@
 
 <h1>Hello. Thanks for reading about this National Park Service Scraping Program.</h1>
 
-<h2>This project for SI507 requires that you have python 3.7, Beautiful Soup, SQLlite and others that provides opportunity to interact with scaped website data to aggregate it, read and write it in an organized CSV. </h2>
-<h3>After running, this program will create 3 new files - a SQLLite database (allstateparks_info.sqlite) , a CSV (nps_parks.csv) and a json cache file (nps_cache.json). In order for this project to work properly, please refer to the required list of dependencies in requirements.txt and pip-install all dependencies to a virtual environment within the project folder for this application to run.</h3>
+<h2>This project for SI507 requires that you have python 3.7, Beautiful Soup, SQLite and others that provides opportunity to interact with scaped website data to aggregate it, read and write it in an organized CSV. </h2>
+<h3>After running, this program will create 3 new files - a SQLite database (allstateparks_info.sqlite) , a CSV (nps_parks.csv) and a json cache file (nps_cache.json). In order for this project to work properly, please refer to the required list of dependencies in requirements.txt and pip-install all dependencies to a virtual environment within the project folder for this application to run.</h3>
 
 <h4> There are two different types of files in this program, the SI507_project4.py code where CSV and beautiful soup are used to scrape the national parks website and create a csv.</h4>
 <h4>Secondly, In the code for db_setup, a SQL database is created with SQLAlchemy so you can browse around the data in SQL. There are 3 tables that are created, a relationship table, a states table and a table for the national parks from cached data off the http://www.nps.gov website.</h4>
