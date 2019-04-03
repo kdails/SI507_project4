@@ -31,3 +31,6 @@ nps_base_url = cache_diction.get(BASEURL)
 if not nps_base_url:
     nps_base_url = requests.get(BASEURL).text
     cache_data(CACHEFILE,BASEURL,cache_diction,nps_base_url)
+
+# create a BeautifulSoup object with the data
+soup = BeautifulSoup(nps_base_url, "html.parser")
