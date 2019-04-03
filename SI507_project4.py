@@ -34,3 +34,7 @@ if not nps_base_url:
 
 # create a BeautifulSoup object with the data
 soup = BeautifulSoup(nps_base_url, "html.parser")
+
+# get the text of the class that contains the list of states in the dropdown and add each state to the database if it doesn't already exist
+dropdown =  soup.find('ul', class_='dropdown-menu SearchBar-keywordSearch')
+stated_tags = dropdown.find_all('li')
