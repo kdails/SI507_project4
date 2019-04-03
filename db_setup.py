@@ -6,7 +6,7 @@ import json, csv
 # some of this code based on info from https://docs.sqlalchemy.org/en/latest/orm/collections.html ( specifically many to many relationships for stateparks with the same names)
 # set up base, session, and engine
 
-engine = create_engine('sqlite:///state_parks_info.sqlite', echo=False)
+engine = create_engine('sqlite:///allstateparks_info.sqlite', echo=False)
 
 Base = declarative_base()
 
