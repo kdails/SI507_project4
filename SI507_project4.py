@@ -48,3 +48,10 @@ if not state_exists:
     this_state = State(State=item.text,Abbr=chopped_url[2].upper(),URL='{}{}'.format(BASEURL,url))
     session.add(this_state)
 session.commit()
+
+# for each state retrieved from the States table, get the text from the url as stored in the db, cache it, and create a BeautifulSoup object
+states = session.query(State.Id,State.URL).all()
+for state in states:
+    url = state[1]
+    id = state[0]
+    url_data = cache_diction.get(url)
