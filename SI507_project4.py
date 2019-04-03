@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import requests, json, csv
-from setup import *
+from db_setup import *
 
 # setting up the caching ---- jackies code was too hard, made simpler with less stuff from 506
 def open_cache(CACHEFILE):
@@ -36,10 +36,13 @@ soup = BeautifulSoup(nps_base_url, "html.parser")
 
 # get the text of the class that contains the list of states in the dropdown and add each state to the database if it doesn't already exist
 dropdown =  soup.find('ul', class_='dropdown-menu SearchBar-keywordSearch')
+#print(dropdown)
 stated_tags = dropdown.find_all('li')
+#print(stated_tags)
+#print(type(stated_tags))
 for item in stated_tags:
     # get the url to retrieve the state abbreviation and check if the state is already in the db
-    url = item.a['href']
+    url = item.a['href'] # all items with type tag href is a url
     chopped_url = url.split('/')
     state_exists = session.query(State.Abbr).filter(State.Abbr.like(chopped_url[2])).all()
     # if the state doesn't already exist, add it to the db
@@ -51,9 +54,11 @@ session.commit()
 # for each state retrieved from the States table, get the text from the url as stored in the db, cache it, and create a BeautifulSoup object
 states = session.query(State.Id,State.URL).all()
 for state in states:
-    url = state[1]
     id = state[0]
+    url = state[1]
+
     url_data = cache_diction.get(url)
+
     if not url_data:
         url_data = requests.get(url).text
         cache_data(CACHEFILE,url,cache_diction,url_data)
