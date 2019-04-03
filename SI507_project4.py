@@ -55,3 +55,9 @@ for state in states:
     url = state[1]
     id = state[0]
     url_data = cache_diction.get(url)
+    if not url_data:
+        url_data = requests.get(url).text
+        cache_data(CACHEFILE,url,cache_diction,url_data)
+    soup = BeautifulSoup(url_data,'html.parser')
+    parks_table = soup.find('ul', id='list_parks')
+    parks_tagged = parks_table.find_all('li',class_='clearfix')
