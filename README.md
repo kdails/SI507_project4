@@ -6,7 +6,7 @@
 <h3>This program has two main files, and will create 3 - a SQLLite database, CSV and a json cache file. In order for this project to work properly, please refer to the required list of dependencies in requirements.txt and pip-install all dependencies to a virtual environment within the project folder for this application to run.</h3>
 
 <h4> There are two different types of files in this program, the SI507_project4.py code where CSV and beautiful soup are used to scrape the national parks website and create a csv.</h4>
-<h4>Secondly, In the code for db_setup, a SQL database is created with SQLAlchemy so you can browse around the data in SQL. There are 3 tables that are created, a relationship table, a states table and a table for the national parks from cached data off the nps website.</h4>
+<h4>Secondly, In the code for db_setup, a SQL database is created with SQLAlchemy so you can browse around the data in SQL. There are 3 tables that are created, a relationship table, a states table and a table for the national parks from cached data off the http://www.nps.gov website.</h4>
 
 <h2> What does the main file do? </h2>
 1. This file defined two different functions - open_cache and cache_data!
