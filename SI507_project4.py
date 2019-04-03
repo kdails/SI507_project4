@@ -38,3 +38,8 @@ soup = BeautifulSoup(nps_base_url, "html.parser")
 # get the text of the class that contains the list of states in the dropdown and add each state to the database if it doesn't already exist
 dropdown =  soup.find('ul', class_='dropdown-menu SearchBar-keywordSearch')
 stated_tags = dropdown.find_all('li')
+for item in stated_tags:
+    # get the url to retrieve the state abbreviation and check if the state is already in the db
+    url = item.a['href']
+    chopped_url = url.split('/')
+    state_exists = session.query(State.Abbr).filter(State.Abbr.like(chopped_url[2])).all()
