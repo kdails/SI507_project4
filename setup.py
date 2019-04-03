@@ -4,8 +4,9 @@ from sqlalchemy.orm import *
 from sqlalchemy.ext.declarative import *
 from sqlalchemy.sql import select
 import json, csv
-
+# some of this code based on info from https://docs.sqlalchemy.org/en/latest/orm/collections.html ( specifically many to many relationships for stateparks with the same names)
 # set up base, session, and engine
+
 Base = declarative_base()
 
 session = scoped_session(sessionmaker())
