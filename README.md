@@ -11,6 +11,7 @@
 <h3> What does the main file do? </h3>
 
 <h4> This file defines two different functions: open_cache and cache_data!</h4>
+
 - open_cache function works by taking the file name and then read contents into a dictionary. If there's an error along the way an empty dictionary is created and is returned.
 
 - cache_data function takes in four inputs the cache file name, the cached dictionary, the url as a string for the data, and new data if any; the function adds the new data to the dictionary where the url is a key and the value as the new data, the dictionary is then saved into the cache file.
