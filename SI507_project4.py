@@ -18,4 +18,10 @@ def cache_data(CACHEFILE,url,cache_diction,new_data):
         cache_diction[url] = new_data
         cache_json = json.dumps(cache_diction) #read write --- both important here!
         cache_file.write(cache_json)
-        
+
+BASEURL = "https://www.nps.gov"
+
+#  create empty dictionary // set up cache from url
+CACHEFILE = "nps_cache.json"
+
+cache_diction = open_cache(CACHEFILE)
