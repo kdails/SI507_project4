@@ -87,3 +87,10 @@ with open('nps_parks.csv','w') as parks_file:
     parkwriter = csv.writer(parks_file)
     parkwriter.writerow(['Park Name','Park Type','Park Location Description','Park Description','Park States'])
     parks = session.query(Park).all()
+    for park in parks:
+        states = []
+        rels = session.query(StateParkAssociation).filter(StateParkAssociation.Park_Id == park.Id).all()
+        for rel in rels:
+            this_state = session.query(State).filter(State.Id == rel.State_Id).first() # THIS_STATE CHANGE
+            states.append(this_state.Abbr)
+        parkwriter.writerow([park.Name,park.Type,park.Location,park.Descr,', '.join(states)])
