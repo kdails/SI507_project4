@@ -70,3 +70,20 @@ for tag in parks_tagged:
         rel_exists = session.query(StateParkAssociation).filter(StateParkAssociation.Park_Id == park_is_true[0].Id, StateParkAssociation.State_Id == id).all()
         if rel_exists:
             break
+        else:
+            new_rel = StateParkAssociation(State_Id=id,Park_Id=park_is_true[0].Id)
+            session.add(new_rel)
+            session.commit()
+    else:
+        new_park = Park(Name=tag.h3.text,Type=tag.h2.text,Descr=tag.p.text.strip('\n'),Location=tag.h4.text)
+        session.add(new_park)
+        session.commit()
+        new_rel = StateParkAssociation(State_Id=id,Park_Id=new_park.Id)
+        session.add(new_rel)
+session.commit()
+
+# write the data to a csv file.... make db
+with open('nps_parks.csv','w') as parks_file:
+    parkwriter = csv.writer(parks_file)
+    parkwriter.writerow(['Park Name','Park Type','Park Location Description','Park Description','Park States'])
+    parks = session.query(Park).all()
