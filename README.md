@@ -18,7 +18,7 @@
 
 - this file also creates a csv file after creating a database with the returned data.
 
-<h3> How is the database & it's tables organized in db_setup.py? </h3>
+<h3> How's the database & tables organized in db_setup.py? </h3>
 
 - Parks table with attributes of: Id, Name of the park, description of the park from nps.gov as well as Location and Type of park.
 
