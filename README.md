@@ -1,10 +1,18 @@
 # SI507_project4
-This is where all of my project 4 files are living for SI 507
+
 <h1>Hello. Thanks for reading about this National Park Service Scraping Program.</h1>
 
-<h2>This project for SI507 requires that you have python 3.7, Beautiful Soup, SQLlite and others that provides opportunity to interact with scaped website data to aggregate it, read and write it in an organized CSV. Then a database is is created with SQLLite in addition to a CSV. In order for this project to work properly, please refer to the required list of dependencies in requirements.txt and pip-install all dependencies to a virtual environment within the project folder for this application to run.</h2>
+<h2>This project for SI507 requires that you have python 3.7, Beautiful Soup, SQLlite and others that provides opportunity to interact with scaped website data to aggregate it, read and write it in an organized CSV. </h2>
+<h2>Then a database is is created with SQLLite in addition to a CSV. In order for this project to work properly, please refer to the required list of dependencies in requirements.txt and pip-install all dependencies to a virtual environment within the project folder for this application to run.</h2>
 
-<h4> There are two different types of files in this program, the SI507_project4.py code where CSV and beautiful soup are used to scrape the national parks website and create a csv. In the code for db_setup, a SQL database is created with SQLAlchemy so you can browse around the data in SQL. There are 3 tables that are created, a relationship table, a states table and a table for the national parks from cached data off the nps website.</h3>
+<h4> There are two different types of files in this program, the SI507_project4.py code where CSV and beautiful soup are used to scrape the national parks website and create a csv.</h4>
+<h4>Secondly, In the code for db_setup, a SQL database is created with SQLAlchemy so you can browse around the data in SQL. There are 3 tables that are created, a relationship table, a states table and a table for the national parks from cached data off the nps website.</h4>
+
+<h2> What does the main file do? </h2>
+1. This file defined two different functions - open_cache and cache_data!
+- open_cache function works by taking the file name and then read contents into a dictionary. If there's an error along the way an empty dictionary is created and is returned.
+- cache_data function takes in four inputs the cache file name, the cached dictionary, the url as a string for the data, and new data if any; the function adds the new data to the dictionary where the url is a key and the value as the new data, the dictionary is then saved into the cache file. 
+- this file also creates a csv file after creating a database with the returned data. 
 
 
 
