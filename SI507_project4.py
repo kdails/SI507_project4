@@ -66,3 +66,7 @@ for tag in parks_tagged:
     park_is_true = session.query(Park).filter(Park.Name == tag.h3.text).all()
     # if park exists, create a new rel; if not we must add it to the db
     # this code is like in discussion section- need break here to continue
+    if park_is_true:
+        rel_exists = session.query(StateParkAssociation).filter(StateParkAssociation.Park_Id == park_is_true[0].Id, StateParkAssociation.State_Id == id).all()
+        if rel_exists:
+            break
