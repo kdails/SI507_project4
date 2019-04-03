@@ -9,10 +9,10 @@
 <h4>Secondly, In the code for db_setup, a SQL database is created with SQLAlchemy so you can browse around the data in SQL. There are 3 tables that are created, a relationship table, a states table and a table for the national parks from cached data off the http://www.nps.gov website.</h4>
 
 <h2> What does the main file do? </h2>
-1. This file defined two different functions - open_cache and cache_data!
-- open_cache function works by taking the file name and then read contents into a dictionary. If there's an error along the way an empty dictionary is created and is returned.
-- cache_data function takes in four inputs the cache file name, the cached dictionary, the url as a string for the data, and new data if any; the function adds the new data to the dictionary where the url is a key and the value as the new data, the dictionary is then saved into the cache file. 
-- this file also creates a csv file after creating a database with the returned data. 
+<h4> This file defined two different functions - open_cache and cache_data!</h4>
+<h4>- open_cache function works by taking the file name and then read contents into a dictionary. If there's an error along the way an empty dictionary is created and is returned.</h4>
+<h4>- cache_data function takes in four inputs the cache file name, the cached dictionary, the url as a string for the data, and new data if any; the function adds the new data to the dictionary where the url is a key and the value as the new data, the dictionary is then saved into the cache file.</h4>
+<h4>- this file also creates a csv file after creating a database with the returned data.</h4>
 
 
 
