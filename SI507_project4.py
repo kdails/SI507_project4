@@ -25,3 +25,9 @@ BASEURL = "https://www.nps.gov"
 CACHEFILE = "nps_cache.json"
 
 cache_diction = open_cache(CACHEFILE)
+
+# get the data out of the dictionary; if not present, request to get & cache
+nps_base_url = cache_diction.get(BASEURL)
+if not nps_base_url:
+    nps_base_url = requests.get(BASEURL).text
+    cache_data(CACHEFILE,BASEURL,cache_diction,nps_base_url)
